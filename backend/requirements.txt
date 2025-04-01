@@ -1,0 +1,11 @@
+Flask
+Flask-CORS
+tensorflow
+numpy
+opencv-python
+pymongo
+gunicorn
+matplotlib
+dotenv
+pillow
+werkzeug
