@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file, send_from_directory, make_response
+```from flask import Flask, request, jsonify, send_file, send_from_directory, make_response
 from flask_cors import CORS
 import tensorflow as tf
 from pymongo import MongoClient
@@ -16,29 +16,9 @@ import shutil
 from dotenv import load_dotenv
 from utils import *
 
-#CHANGE STARTS HERE
-import os
-
-# Prevent TensorFlow from registering CUDA libraries multiple times
-os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
-
-# Disable OneDNN optimizations if needed
-#os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
-
-from dotenv import load_dotenv
-import os
-
-load_dotenv()  # Load environment variables from .env file
-
-# Check if variables are loaded correctly
-print("MongoDB URI:", os.getenv("MONGO_URI"))  # Debugging
-
-#CHANGE ENDS HERE
-
 # Flask Setup
 app = Flask(__name__)
-#INSTEAD OF THIS: CORS(app)  # Allows requests from any frontend
-CORS(app, resources={r"/*": {"origins": os.getenv("CORS_ORIGINS", "*")}}) #THIS
+CORS(app)  # Allows requests from any frontend
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -176,13 +156,7 @@ def download_image(image_type):
     response.headers["Expires"] = "0"
     return response
 
-'''INSTEAD OF THIS
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Use PORT from environment, default to 5000
-    app.run(host="0.0.0.0", port=port, debug=True)
-'''
 
 if __name__ == "__main__":
-    host = os.getenv("HOST", "0.0.0.0")  # Bind to all network interfaces
-    port = int(os.getenv("PORT", 5000))
-    app.run(host=host, port=port, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use PORT from environment, default to 5000
+    app.run(host="0.0.0.0", port=port, debug=True)```
