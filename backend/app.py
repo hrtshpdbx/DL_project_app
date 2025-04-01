@@ -1,4 +1,4 @@
-```from flask import Flask, request, jsonify, send_file, send_from_directory, make_response
+from flask import Flask, request, jsonify, send_file, send_from_directory, make_response
 from flask_cors import CORS
 import tensorflow as tf
 from pymongo import MongoClient
@@ -159,4 +159,4 @@ def download_image(image_type):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Use PORT from environment, default to 5000
-    app.run(host="0.0.0.0", port=port, debug=True)```
+    app.run(host="0.0.0.0", port=port, debug=True)
